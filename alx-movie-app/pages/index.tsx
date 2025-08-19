@@ -1,4 +1,5 @@
-import Layout from '@/components/layouts/Layout';
+import { useState } from "react";
+import Layout from '@/components/layout/Layout';
 import MovieCard from '@/components/commons/MovieCard';
 import Button from '@/components/commons/Button';
 import Loading from '@/components/commons/Loading';
@@ -16,6 +17,8 @@ type MovieResponse = {
 };
 
 export default function Home() {
+  const [genre, setGenre] = useState("Now Playing");  // 👈 define state
+
   const { data, loading, error } = useFetchData<MovieResponse>('/movie/now_playing');
 
   return (
@@ -32,7 +35,11 @@ export default function Home() {
           ))}
         </div>
 
-        <Button />
+        {/* ✅ No key needed here */}
+        <Button 
+          title={genre} 
+          onClick={() => setGenre("Popular")} // example: switch to another genre
+        />
       </div>
     </Layout>
   );

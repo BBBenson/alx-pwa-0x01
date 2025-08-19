@@ -12,12 +12,14 @@ const useFetchData = <T>(endpoint: string) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("Fetching:", `${BASE_URL}${endpoint}`, "with key:", API_KEY);
         const res = await axios.get(`${BASE_URL}${endpoint}`, {
           params: { api_key: API_KEY },
         });
-        setData(res.data);
-      } catch (err) {
-        setError('Failed to fetch data');
+        setData(res.data as T);
+      } catch (err: any) {
+        console.error("Fetch error:", err.response?.data || err.message);
+        setError(err.response?.data?.status_message || 'Failed to fetch data');
       } finally {
         setLoading(false);
       }
