@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Use the same name as in your .env.local file
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 

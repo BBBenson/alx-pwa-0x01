@@ -17,7 +17,7 @@ type MovieResponse = {
 };
 
 export default function Home() {
-  const [genre, setGenre] = useState("Now Playing");  // 👈 define state
+  const [, setGenre] = useState("Now Playing");  // 👈 removed unused genre variable
 
   const { data, loading, error } = useFetchData<MovieResponse>('/movie/now_playing');
 
