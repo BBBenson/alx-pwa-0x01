@@ -35,11 +35,13 @@ export default function Home() {
           ))}
         </div>
 
-        {/* ✅ No key needed here */}
-        <Button 
-          title={genre} 
-          onClick={() => setGenre("Popular")} // example: switch to another genre
-        />
+        {["Now Playing", "Popular", "Upcoming", "Top Rated"].map((g) => (
+          <Button
+            key={g}                   // ✅ valid inside map
+            title={g}
+            onClick={() => setGenre(g)}
+          />
+        ))}
       </div>
     </Layout>
   );
